@@ -21,7 +21,6 @@ const MENU = [
   { "id": 772501651, "category": "Paratha", "name": "Aloo Pyaz Paratha", "desc": "Tandoor baked flatbread stuffed with spiced potatoes and minced onion.", "image": "https://via.placeholder.com/150/e2e8f0?text=Aloo+Paratha", "isVeg": true, "isBestseller": false, "price": 89 },
   { "id": 772501663, "category": "Roti", "name": "Butter Tawa Roti", "desc": "Fresh whole wheat flatbread made on traditional iron griddle layered with Amul butter.", "image": "https://via.placeholder.com/150/e2e8f0?text=Butter+Roti", "isVeg": true, "isBestseller": false, "price": 22 },
   { "id": 787477097, "category": "Momos", "name": "Veg Momos", "desc": "Classic street style loaded mixed vegetable dumplings.", "image": "https://b.zmtcdn.com/data/dish_photos/984/d03ee9af9232d29239be8f8637442984.jpeg", "isVeg": true, "isBestseller": true, "variants": [{ "name": "Steamed", "price": 119 }, { "name": "Fried", "price": 129 }, { "name": "Pan Fried", "price": 139 }] }
-  // Note: Remaining items track from the complete data register download file above
 ];
 
 export default function Home() {
@@ -99,7 +98,7 @@ export default function Home() {
       stringMsg += `👤 Name: ${formData.name}\n`;
       stringMsg += `📞 Contact: ${formData.phone}\n`;
       stringMsg += `🏠 Address: ${formData.address}\n`;
-      stringMsg += `📍 GPS Coordinates: https://maps.google.com/?q=${formData.lat},${formData.lng}\n\n`;
+      stringMsg += `📍 GPS Coordinates: http://googleusercontent.com/maps.google.com/maps?q=${formData.lat},${formData.lng}\n\n`;
       stringMsg += `*Cart Summary:*\n`;
       cart.forEach(i => { stringMsg += `- ${i.qty}x ${i.name} [₹${i.price}]\n`; });
       stringMsg += `\nSubtotal: ₹${subtotal}\n`;
@@ -157,7 +156,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#FDFAF4] text-[#2B1F1D] pb-24 lg:pb-10">
-      {/* Premium Header */}
+      {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-40 border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -167,7 +166,7 @@ export default function Home() {
               <p className="text-[10px] font-bold text-amber-600 uppercase tracking-widest">Science of Deliciousness</p>
             </div>
           </div>
-          <div className="hidden sm:block text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">🛵 Direct Orders: NO GST & NO Packaging Fees</div>
+          <div className="hidden sm:block text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-full">Direct Orders: NO GST & NO Packaging Fees</div>
         </div>
         
         {/* Horizontal Category Scroller */}
@@ -235,7 +234,11 @@ export default function Home() {
           <div className="sticky top-32 bg-white border border-slate-100 rounded-2xl p-5 shadow-lg">
             <h2 className="text-lg font-black uppercase tracking-wide border-b border-slate-100 pb-3 mb-4">Shopping Basket</h2>
             {cart.length === 0 ? (
-              <div className="text-center py-12 text-slate-400 text-sm">Your active basket is empty.<br>Select dishes to generate configuration.</div>
+              <div className="text-center py-12 text-slate-400 text-sm">
+                {"Your active basket is empty."}
+                <br />
+                {"Select dishes to generate configuration."}
+              </div>
             ) : (
               <div className="space-y-4">
                 <div className="max-h-[50vh] overflow-y-auto space-y-3 hide-scrollbar pr-1">
