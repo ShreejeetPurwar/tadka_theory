@@ -5,11 +5,19 @@ import Order from '../../../models/Order';
 export async function POST(request) {
   try {
     await dbConnect();
-    const data = await request.json();
-    const newOrder = await Order.create(data);
-    return NextResponse.json({ success: true, orderId: newOrder._id }, { status: 201 });
+    const payload = await request.json();
+    
+    // Asynchronously create the document record inside Atlas
+    const orderRecord = await Order.create(payload);
+    
+    return NextResponse.json({ success: true, orderId: orderRecord._id }, { status: 201 });
   } catch (error) {
-    console.error("🚨 FULL MONGODB ERROR:", error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    console.error("🚨 CRITICAL PROD DATABASE EXCEPTION:", error);
+    
+    // Return a sanitized, secure notification back to the client UI
+    return NextResponse.json({ 
+      success: false, 
+      error: "We encountered an operational issue logging your transaction. Please message our helpline directly via WhatsApp!" 
+    }, { status: 500 });
   }
 }
