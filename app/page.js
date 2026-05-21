@@ -235,9 +235,7 @@ export default function Home() {
             <h2 className="text-lg font-black uppercase tracking-wide border-b border-slate-100 pb-3 mb-4">Shopping Basket</h2>
             {cart.length === 0 ? (
               <div className="text-center py-12 text-slate-400 text-sm">
-                {"Your active basket is empty."}
-                <br />
-                {"Select dishes to generate configuration."}
+                Your active basket is empty.<br />Select dishes to generate configuration.
               </div>
             ) : (
               <div className="space-y-4">
