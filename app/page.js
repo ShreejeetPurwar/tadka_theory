@@ -82,7 +82,20 @@ export default function Home() {
     if (!formData.lat || !formData.lng) return alert("Please capture your GPS location telemetry to coordinate railway/doorstep dispatch.");
     setIsSubmitting(true);
 
-    const dataPayload = { ...formData, items: cart, subtotal, discount, deliveryFee, finalTotal: grandTotal };
+    const dataPayload = { 
+  name: formData.name,
+  phone: formData.phone,
+  address: formData.address,
+  location: { 
+    lat: formData.lat, 
+    lng: formData.lng 
+  },
+  items: cart, 
+  subtotal, 
+  discount, 
+  deliveryFee, 
+  finalTotal: grandTotal 
+};
 
     try {
       const response = await fetch('/api/orders', {
